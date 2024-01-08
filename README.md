@@ -1,0 +1,1 @@
+This is a sample React Native application that demonstrates using the [Safe Place API](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/safe-place) by [Amadeus](https://developers.amadeus.com/).

@@ -67,3 +67,28 @@ const classifyScore = (score, isRisk = false) => {
 };
 
 export const colorEncodeSafetyScore = score => classifyScore(score).colors;
+export const getSafetyResolution = score => classifyScore(score).resolution;
+
+export const getSubscoreSummary = scores => {
+    return Object.entries(scores)
+        .sort((a, b) => a[1] - b[1])
+        .map(entry => {
+            const category = entry[0];
+            const score = entry[1];
+
+            switch (true) {
+                case category === "politicalFreedom":
+                    return `Political freedom: ${(classifyScore(score).description)}`
+                case category === "physicalHarm":
+                    return `Risk of physical harm: ${(classifyScore(score, true).description)}`
+                case category === "theft":
+                    return `Risk of theft: ${(classifyScore(score, true).description)}`
+                case category === "medical":
+                    return `Medical environment: ${(classifyScore(score).description)}`
+                case category === "lgbt":
+                    return `Safety for LGBTQ: ${(classifyScore(score).description)}`
+                case category === "female":
+                    return `Safety for women: ${(classifyScore(score).description)}`
+            }
+        })
+}

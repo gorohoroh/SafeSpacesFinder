@@ -3,7 +3,8 @@ import {getSafetyForSquare} from "../logic/amadeus";
 import {StyleSheet, View} from "react-native";
 import MapView, {Marker, PROVIDER_GOOGLE} from "react-native-maps";
 import {SafetyLocationMarker} from "../components/SafetyLocationMarker";
-import {colorEncodeSafetyScore, getApplicableScores, getPersonalAverageSafetyScore} from "../logic/safetyScores";
+import {CustomCallout} from "../components/CustomCallout";
+import {colorEncodeSafetyScore, getSubscoreSummary, getApplicableScores, getPersonalAverageSafetyScore, getSafetyResolution} from "../logic/safetyScores";
 
 export const SafePlaceMap = ({route}) => {
     const city = route.params.city;
@@ -42,6 +43,8 @@ export const SafePlaceMap = ({route}) => {
                 const applicableScores = getApplicableScores(location.safetyScores, female, lgbt);
                 const averageSafetyScore = getPersonalAverageSafetyScore(applicableScores);
                 const colorCode = colorEncodeSafetyScore(averageSafetyScore);
+                const resolution = getSafetyResolution(averageSafetyScore);
+                const subscoreSummary = getSubscoreSummary(applicableScores);
                 return (
                     <Marker
                         coordinate={location.geoCode}
@@ -49,6 +52,13 @@ export const SafePlaceMap = ({route}) => {
                         <SafetyLocationMarker
                             name={location.name}
                             colorCode={colorCode}
+                        />
+                        <CustomCallout
+                            name={location.name}
+                            score={averageSafetyScore}
+                            colorCode={colorCode}
+                            resolution={resolution}
+                            summary={subscoreSummary}
                         />
                     </Marker>
                 );

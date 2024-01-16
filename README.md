@@ -18,7 +18,7 @@ On your phone, install an app called [Expo Go](https://expo.dev/client) from [Go
        "secret": "YOUR_API_SECRET"
      }
    }
-   ``
+   ```
 4. Register with [Amadeus for Developers](https://developers.amadeus.com/) to get access to Amadeus for Developers Self-Service APIs.
 5. In your [Amadeus for Developers self-service workspace](https://developers.amadeus.com/my-apps), create a new app.
 6. Get your Amadeus app's actual API key and API secret and paste them into `credentials.json` instead of `YOUR_API KEY` and `YOUR_API_SECRET`.
